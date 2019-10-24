@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Whoami is a Lambda function that attempts to gather details about the caller.
+Globals:
+  Function:
+    Timeout: 30 
+
+Parameters:
+  SecretArnParam:
+    Type: String
+    Description: ARN for the secret containing your IPStack API Keys.
+
+Resources:
+  WhoamiFunc:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: whoami_lambda/
+      Handler: app.lambda_handler
+      Runtime: python3.7
+      Environment:
+        Variables:
+          SECRET_ARN: !Ref SecretArnParam
+      Policies:
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Ref SecretArnParam 
+      Events:
+        whoami:
+          Type: Api 
+          Properties:
+            Path: /whoami
+            Method: get
+
+Outputs:
+  whoamiApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/whoami/"
