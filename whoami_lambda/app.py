@@ -69,8 +69,8 @@ def lambda_handler(event, context):
         "http://api.ipstack.com/{}?access_key={}".format(
             source_ip,
             get_secret()['ipstack']
-            )
         )
+    )
     data = call.json()
 
     # Check if source is ip originates from a Tor exit node.
