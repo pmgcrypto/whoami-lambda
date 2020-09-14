@@ -17,7 +17,7 @@ Resources:
     Properties:
       CodeUri: whoami_lambda/
       Handler: app.lambda_handler
-      Runtime: python3.7
+      Runtime: python3.8
       Environment:
         Variables:
           SECRET_ARN: !Ref SecretArnParam
@@ -33,5 +33,5 @@ Resources:
 
 Outputs:
   whoamiApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Description: "This is the URL of your new Lambda function:"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/whoami/"

@@ -14,6 +14,9 @@ echo -n "> "
 read bucket
 echo
 
+# AWS no longer vends the requests module. We'll need to use pip3 package it with our code.
+pip3 install requests -t ./whoami_lambda
+
 sam build
 
 sam package --s3-bucket $bucket --output-template-file $DIR$DEPLOY 
