@@ -16,7 +16,7 @@ Resources:
     Type: AWS::Serverless::Function 
     Properties:
       CodeUri: whoami_lambda/
-      Handler: app.lambda_handler
+      Handler: whoami_lambda.whoami_gather_info
       Runtime: python3.8
       Environment:
         Variables:
