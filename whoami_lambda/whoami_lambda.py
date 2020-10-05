@@ -1,3 +1,4 @@
+import ast
 import boto3
 import json
 import socket
@@ -85,8 +86,8 @@ def whoami_gather_info(event, context):
 
     # Get ISP
     isp_request = requests.get(
-        "https://api.hackertarget.com/aslookup/?q={}".format(source_ip)).text
-    isp = eval(isp_request)[3]
+    "https://api.hackertarget.com/aslookup/?q={}".format(source_ip)).text
+    isp = ast.literal_eval(isp_request)[3]
 
     try:
         referrer = event["multiValueHeaders"]["referrer"][0]
