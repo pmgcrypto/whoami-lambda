@@ -14,7 +14,7 @@ This application was built using the AWS Severless Application model or SAM. SAM
 2. ``` cd whoami-lambda```
 3. Store your IPStack API key in AWS SecretsManager. Replace API_KEY with the API key provided to you by IPStack. 
    
-```aws secretsmanager create-secret --name api_key --secret-string "{\"ipstack\": \"API_KEY\"}"```
+    ```aws secretsmanager create-secret --name api_key --secret-string "{\"ipstack\": \"API_KEY\"}"```
 
 5. Take note of the ARN assigned to the IPStack API key. You'll need this to deploy the API. 
 6. Run ```deploy.sh```. First, you will be prompted to enter the ARN of the secret you created for the API Key. Lastly, you'll be asked to provide the name of the bucket used to store your AWS Lambda code. You would have specified this while setting up the AWS SAM CLI.
