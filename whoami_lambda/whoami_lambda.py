@@ -85,9 +85,12 @@ def whoami_gather_info(event, context):
         torbool = False
 
     # Get ISP
-    isp_request = requests.get(
-    "https://api.hackertarget.com/aslookup/?q={}".format(source_ip)).text
-    isp = ast.literal_eval(isp_request)[3]
+    try:
+        isp_request = requests.get(
+        "https://api.hackertarget.com/aslookup/?q={}".format(source_ip)).text
+        isp = ast.literal_eval(isp_request)[3]
+    except:
+        isp = "No Data"
 
     try:
         referrer = event["multiValueHeaders"]["referrer"][0]
